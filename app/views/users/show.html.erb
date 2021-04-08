@@ -1,0 +1,15 @@
+<h1><%=@user.name%></h1>
+
+<h2>Born: <%=@user.born.strftime("%B %e, %Y")%></h2>
+
+<% if @user.alive ==false %>
+  <h2>Died: <%=@user.died.strftime("%B %e, %Y")%></h2>
+<% end %>
+
+<% if session[:user_id] == @user.id %>
+    <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+    <br>
+    <%=form_tag("/users/#{@user.id}", method: :delete) do %> 
+        <%=submit_tag("Delete User")%>
+    <% end %>
+<% end %>
