@@ -1,0 +1,5 @@
+<h1><%=@family.name%></h1>
+
+<% @family.users.each do |member| %>
+  <%= link_to member.name, user_path(member) %>
+<% end %>

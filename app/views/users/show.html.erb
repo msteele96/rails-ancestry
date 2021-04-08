@@ -1,5 +1,7 @@
 <h1><%=@user.name%></h1>
 
+<h2>Family: <a href="/families/<%=@user.family.id%>"><%=@user.family.name%></a></h2>
+
 <h2>Born: <%=@user.born.strftime("%B %e, %Y")%></h2>
 
 <% if @user.alive ==false %>

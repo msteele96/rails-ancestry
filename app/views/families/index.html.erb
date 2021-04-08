@@ -1,0 +1,5 @@
+<h1>Families</h1>
+
+<% @families.each do |family| %>
+  <a href="/families/<%=family.id%>"><%=family.name%></a>
+<% end %>
