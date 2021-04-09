@@ -1,5 +1,10 @@
 <h1><%=@family.name%></h1>
 
 <% @family.users.each do |member| %>
-  <%= link_to member.name, user_path(member) %>
+  <h4><%= link_to member.name, user_path(member) %></h4>
+<% end %>
+
+
+<% if @family == User.find(session[:user_id]).family %>
+    <%= button_to "Edit Family", edit_family_path(@family), method: :get %>
 <% end %>

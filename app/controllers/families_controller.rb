@@ -22,11 +22,9 @@ class FamiliesController < ApplicationController
     end
 
     def update
-        
-    end
-
-    def destroy
-        
+        @family = Family.find(params[:id])
+        @family.update(family_params)
+        redirect_to family_path(@family)
     end
     
     private

@@ -1,3 +1,12 @@
 <h1>Edit account information</h1>
 
-<%= render 'form'%>
+<%=form_for @user do |f|%>
+    <%=f.label :name %>
+    <%=f.text_field :name %> <br><br>
+    <%=f.label :born %>
+    <%=f.date_field :born %> <br><br>
+    <%=f.label :died %>
+    <%=f.date_field :died %> <br><br>
+    <%=f.collection_select(:family_id, Family.all, :id, :name)%> <br><br>
+    <%=f.submit%>
+<% end %>

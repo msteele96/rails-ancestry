@@ -1,2 +1,15 @@
-<h1>Create an account below</h1>
-<%= render 'form' %>
+<h1>Create an account</h1>
+<%=form_for @user do |f|%>
+    <%=f.label :name %>
+    <%=f.text_field :name %> <br><br>
+    <%=f.label :password %>
+    <%=f.password_field :password %> <br><br>
+    <%=f.label :password_confirmation %>
+    <%=f.password_field :password_confirmation %> <br><br>
+    <%=f.label :born %>
+    <%=f.date_field :born %> <br><br>
+    <%=f.label :died %>
+    <%=f.date_field :died %> <br><br>
+    <%=f.collection_select(:family_id, Family.all, :id, :name, {:selected => "3"})%> <br><br>
+    <%=f.submit%>
+<% end %>
