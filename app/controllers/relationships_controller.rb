@@ -14,7 +14,13 @@ class RelationshipsController < ApplicationController
 
     def create
         @relationship = Relationship.new(relationship_params)
-        raise params.inspect
+        if Relationship.find_by(user_1_id: params[:user_1_id], user_2_id: params[:user_2_id]) || Relationship.find_by(user_1_id: params[:user_2_id], user_2_id: params[:user_1_id])
+            # relationship already exists
+            render 'new'
+        else
+            @relationship.save
+            redirect_to user_path(current_user)
+        end
     end
 
     private
