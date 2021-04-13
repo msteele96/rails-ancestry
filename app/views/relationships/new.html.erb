@@ -1,0 +1,11 @@
+<h1>New Relationship Page</h1>
+
+<%= form_for @relationship do |f|%>
+    <%=f.label :relationship_type%>
+    <%=f.collection_select(:relationship_type, ["sibling", "parent/child", "grandparent/grandchild", "cousin", "spouse", "aunt/uncle/niece/nephew"], :to_s , :to_s )%> <br>
+    <%=f.label :user_2_id, "Other Person"%>
+    <%=f.collection_select(:user_2_id, current_user.family.users, :id, :name)%> <br>
+    <%=f.hidden_field :user_1_id, value: session[:user_id]%>
+    <%=f.hidden_field :family_id, value: current_user.family_id%>
+    <%=f.submit%>
+<% end %>

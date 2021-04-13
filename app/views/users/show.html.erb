@@ -4,6 +4,12 @@
 
 <h2>Born: <%=@user.born.strftime("%B %e, %Y")%></h2>
 
+<h2>Relationships:</h2>
+
+<% @user.relationships.each do |relationship| %>
+  <a href="/users/<%=relationship.other_user(@user).id%>"><%=relationship.other_user(@user).name%></a>: <%=relationship.relationship_type%> <br>
+<% end %>
+
 <% if @user.alive ==false %>
   <h2>Died: <%=@user.died.strftime("%B %e, %Y")%></h2>
 <% end %>
