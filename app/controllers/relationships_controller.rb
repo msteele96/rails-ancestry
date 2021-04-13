@@ -14,8 +14,8 @@ class RelationshipsController < ApplicationController
 
     def create
         @relationship = Relationship.new(relationship_params)
-        if Relationship.find_by(user_1_id: params[:user_1_id], user_2_id: params[:user_2_id]) || Relationship.find_by(user_1_id: params[:user_2_id], user_2_id: params[:user_1_id])
-            # relationship already exists
+        if Relationship.find_by(user_1_id: relationship_params[:user_1_id], user_2_id: relationship_params[:user_2_id]) || Relationship.find_by(user_1_id: relationship_params[:user_2_id], user_2_id: relationship_params[:user_1_id])
+            flash[:message] = "Relationship already exists"
             render 'new'
         else
             @relationship.save

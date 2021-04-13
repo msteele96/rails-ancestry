@@ -4,7 +4,7 @@
 
 <h2>Born: <%=@user.born.strftime("%B %e, %Y")%></h2>
 
-<h2>Relationships:</h2>
+<h2> <%=link_to 'Relationships', new_relationship_path%>:</h2>
 
 <% @user.relationships.each do |relationship| %>
   <a href="/users/<%=relationship.other_user(@user).id%>"><%=relationship.other_user(@user).name%></a>: <%=relationship.relationship_type%> <br>

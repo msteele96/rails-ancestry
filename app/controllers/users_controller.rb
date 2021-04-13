@@ -12,6 +12,7 @@ class UsersController < ApplicationController
                 redirect_to user_path(@user)
             end
         else
+            flash[:message] = "Invalid data."
             render 'new'
         end
     end

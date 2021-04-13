@@ -1,3 +1,7 @@
+<% if flash %>
+  <%=flash[:message]%>
+<% end %>
+
 <h1>Create an account</h1>
 <%=form_for @user do |f|%>
     <%=f.label :name %>

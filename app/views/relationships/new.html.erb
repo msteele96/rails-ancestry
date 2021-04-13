@@ -1,4 +1,8 @@
-<h1>New Relationship Page</h1>
+<% if flash %>
+  <%=flash[:message]%>
+<% end %>
+
+<h1>New Relationship</h1>
 
 <%= form_for @relationship do |f|%>
     <%=f.label :relationship_type%>
