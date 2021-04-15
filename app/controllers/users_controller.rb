@@ -39,6 +39,11 @@ class UsersController < ApplicationController
     def destroy
         @user = User.find(params[:id])
         if session[:user_id] == @user.id
+            Relationship.all.each do |r|
+                if r.user_1_id == @user.id || r.user_2_id == @user.id
+                    r.delete
+                end
+            end
             @user.delete
             session.delete :user_id 
         end
