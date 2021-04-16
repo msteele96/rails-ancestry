@@ -1,3 +1,7 @@
+<% if flash %>
+  <%=flash[:message]%>
+<% end %>
+
 <h1>New Family</h1>
 
 <%= render 'form' %>

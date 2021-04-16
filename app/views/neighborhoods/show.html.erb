@@ -1,0 +1,9 @@
+<h1><%= @neighborhood.name %></h1>
+
+<ul>
+    <% @neigborhood.families.each do |family| %>
+      <li>
+        <%=link_to family.name, family_path(family)%>
+      </li>
+    <% end %>
+</ul>

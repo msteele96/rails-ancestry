@@ -5,15 +5,13 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        if @user.name != "" && @user.born != nil
+        if @user.save
             @user.living?
-            if @user.save
-                session[:user_id] = @user.id
-                clear_flash
-                redirect_to user_path(@user)
-            end
+            session[:user_id] = @user.id
+            clear_flash
+            redirect_to user_path(@user)
         else
-            flash[:message] = "Invalid data."
+            flash[:message] = @user.errors.full_messages
             render 'new'
         end
     end
@@ -32,9 +30,13 @@ class UsersController < ApplicationController
     
     def update
         @user = User.find(params[:id])
-        @user.update(user_params)
-        @user.living?
-        redirect_to user_path(@user)
+        if @user.update(user_params)
+            @user.living?
+            redirect_to user_path(@user)
+        else
+            flash[:message] = @user.errors.full_messages
+            render 'edit'
+        end
     end
 
     def destroy

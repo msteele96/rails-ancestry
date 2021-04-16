@@ -1,3 +1,7 @@
+<% if flash %>
+  <%=flash[:message]%>
+<% end %>
+
 <h1>Edit Family Page</h1>
 
 <%= render 'form' %>

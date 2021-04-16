@@ -1,3 +1,7 @@
+<% if flash %>
+  <%=flash[:message]%>
+<% end %>
+
 <h1>Edit account information</h1>
 
 <%=form_for @user do |f|%>

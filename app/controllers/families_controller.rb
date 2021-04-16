@@ -13,8 +13,13 @@ class FamiliesController < ApplicationController
     end
 
     def create
-        @family = Family.create(family_params)
-        redirect_to family_path(@family)
+        @family = Family.new(family_params)
+        if @family.save
+            redirect_to family_path(@family)
+        else
+            flash[:message] = @family.errors.full_messages
+            render 'new'
+        end
     end
 
     def edit
@@ -23,8 +28,12 @@ class FamiliesController < ApplicationController
 
     def update
         @family = Family.find(params[:id])
-        @family.update(family_params)
-        redirect_to family_path(@family)
+        if @family.update(family_params)
+            redirect_to family_path(@family)
+        else
+            flash[:message] = @family.errors.full_messages
+            render 'new'
+        end
     end
     
     private

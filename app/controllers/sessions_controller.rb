@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
           clear_flash
           redirect_to user_path(@user)
         else
-          flash[:message] = "Incorrect Name or Password"
+          flash[:message] = 'Invalid name or password.'
           render 'new'
         end
     end
@@ -29,7 +29,6 @@ class SessionsController < ApplicationController
       end
 
       if !@user.persisted?
-        @user.family_id = 3
         @user.password = SecureRandom.base64(15)
         @user.save
         session[:user_id] = @user.id

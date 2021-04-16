@@ -10,13 +10,12 @@ class RelationshipsController < ApplicationController
 
     def create
         @relationship = Relationship.new(relationship_params)
-        if Relationship.find_by(user_id: relationship_params[:user_id], family_id: relationship_params[:family_id], relationship_type: relationship_params[:relationship_type])
-            flash[:message] = "Relationship already exists"
-            render 'new'
-        else
-            @relationship.save
+        if @relationship.save
             clear_flash
             redirect_to user_path(current_user)
+        else
+            flash[:message] = @relationship.errors.full_messages
+            render 'new'
         end
     end
 
