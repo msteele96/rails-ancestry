@@ -1,0 +1,7 @@
+<h1> Relationships for <%=current_user.name%></h1>
+
+<ul>
+    <% @relationships.each do |relationship| %>
+        <li><%=relationship.relationship_type.capitalize%> in <%=relationship.family.name%> <%= button_to "Delete Relationship", relationship_path(relationship.id), method: :delete %></li>
+    <% end %>
+</ul>

@@ -1,7 +1,9 @@
 class User < ApplicationRecord
     has_secure_password
-    belongs_to :family
-    has_many :relationships, through: :family
+    has_many :relationships
+    has_many :families, through: :relationships
+    scope :living, -> { where(alive: true) }
+
 
     def living?
         if self.died? == true

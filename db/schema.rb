@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_203653) do
+ActiveRecord::Schema.define(version: 2021_04_15_224804) do
 
   create_table "families", force: :cascade do |t|
     t.string "name"
@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_203653) do
 
   create_table "relationships", force: :cascade do |t|
     t.string "relationship_type"
-    t.integer "user_1_id"
-    t.integer "user_2_id"
+    t.integer "user_id"
     t.integer "family_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_203653) do
     t.date "died"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "family_id"
   end
 
 end

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
             @user.living?
             if @user.save
                 session[:user_id] = @user.id
+                clear_flash
                 redirect_to user_path(@user)
             end
         else
@@ -38,12 +39,7 @@ class UsersController < ApplicationController
 
     def destroy
         @user = User.find(params[:id])
-        if session[:user_id] == @user.id
-            Relationship.all.each do |r|
-                if r.user_1_id == @user.id || r.user_2_id == @user.id
-                    r.delete
-                end
-            end
+        if current_user == @user
             @user.delete
             session.delete :user_id 
         end
@@ -52,7 +48,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:name, :password, :password_confirmation, :born, :died, :family_id)
+        params.require(:user).permit(:name, :password, :password_confirmation, :born, :died)
     end
 
 end

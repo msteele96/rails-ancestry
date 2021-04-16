@@ -1,11 +1,9 @@
 <h1><%=@family.name%></h1>
 
-<% @family.users.each do |member| %>
+<% @family.users.living.each do |member| %>
   <h4><%= link_to member.name, user_path(member) %></h4>
 <% end %>
 
-
-<% if @family == current_user.family %>
+<% if current_user.families.include?(@family) %>
     <%= button_to "Edit Family", edit_family_path(@family), method: :get %>
-    <%= button_to "Add Relationship", new_relationship_path, method: :get %>
 <% end %>

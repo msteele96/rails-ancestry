@@ -5,11 +5,10 @@
 <h1>New Relationship</h1>
 
 <%= form_for @relationship do |f|%>
+    <%=f.label :family_id, "Family" %>
+    <%=f.collection_select(:family_id, Family.all, :id , :name )%> <br>
     <%=f.label :relationship_type%>
-    <%=f.collection_select(:relationship_type, ["sibling", "parent/child", "grandparent/grandchild", "cousin", "spouse", "aunt/uncle/niece/nephew"], :to_s , :to_s )%> <br>
-    <%=f.label :user_2_id, "Other Person"%>
-    <%=f.collection_select(:user_2_id, current_user.family.users, :id, :name)%> <br>
-    <%=f.hidden_field :user_1_id, value: session[:user_id]%>
-    <%=f.hidden_field :family_id, value: current_user.family_id%>
+    <%=f.collection_select(:relationship_type, ["child", "parent", "grandparent", "grandchild", "cousin", "aunt/uncle", "niece/nephew"], :to_s , :to_s )%> <br>
+    <%=f.hidden_field :user_id, value: current_user.id %>
     <%=f.submit%>
 <% end %>

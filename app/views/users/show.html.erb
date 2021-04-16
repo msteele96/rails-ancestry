@@ -1,18 +1,25 @@
 <h1><%=@user.name%></h1>
 
-<h2>Family: <a href="/families/<%=@user.family.id%>"><%=@user.family.name%></a></h2>
+<h2><%= link_to "Families:", families_path %> </h2> 
+<ul>
+  <% @user.families.each do |family| %>
+    <li><%= link_to family.name, family_path(family)%></li> <br>
+  <% end %>
+</ul>
 
 <h2>Born: <%=@user.born.strftime("%B %e, %Y")%></h2>
-
-<h2> <%=link_to 'Relationships', new_relationship_path%>:</h2>
-
-<% @user.relationships.each do |relationship| %>
-  <a href="/users/<%=relationship.other_user(@user).id%>"><%=relationship.other_user(@user).name%></a>: <%=relationship.relationship_type%> <br>
-<% end %>
 
 <% if @user.alive ==false %>
   <h2>Died: <%=@user.died.strftime("%B %e, %Y")%></h2>
 <% end %>
+
+<h2> <%=link_to 'Relationships', relationships_path%>:</h2>
+
+<ul>
+  <% @user.relationships.each do |relationship| %>
+    <li><%= relationship.relationship_type.capitalize%> in <%= link_to relationship.family.name, family_path(relationship.family)%></li> <br>
+  <% end %>
+</ul>
 
 <% if session[:user_id] == @user.id %>
     <%= button_to "Edit User", edit_user_path(@user), method: :get %>

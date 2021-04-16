@@ -7,6 +7,5 @@
     <%=f.date_field :born %> <br><br>
     <%=f.label :died %>
     <%=f.date_field :died %> <br><br>
-    <%=f.collection_select(:family_id, Family.all, :id, :name)%> <br><br>
     <%=f.submit%>
 <% end %>
